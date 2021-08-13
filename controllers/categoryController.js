@@ -1,5 +1,10 @@
 var Category = require('../models/category');
 
+// Display Home Page
+exports.index = function (req, res) {
+    res.send('Not Implemented: Site Home Page');
+};
+
 // Display list of all categories
 exports.category_list = function (req, res) {
     res.send('Not Implemented: Category List')
