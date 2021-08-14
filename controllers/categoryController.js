@@ -4,17 +4,7 @@ var async = require('async');
 
 // Display Home Page
 exports.index = function (req, res) {
-    async.parallel({
-        category_count: function (callback) {
-            Category.countDocuments({}, callback);
-        },
-        item_count: function (callback) {
-            Item.countDocuments({}, callback)
-        }
-    },
-        function (err, results) {
-            res.render('index', { title: 'Furniture For You', error: err, data: results })
-        });
+    res.render('index', { title: 'Furniture For You', url: '/categories' })
 };
 
 // Display list of all categories
