@@ -14,9 +14,9 @@
     </h1>
     <% category_list.map((item)=> { %>
         <div>
-            <h3>
+            <a href=<%=item.url%>>
                 <%= item.category_name %>
-            </h3>
+            </a>
         </div>
         <% }) %>
 </body>
