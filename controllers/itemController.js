@@ -7,7 +7,11 @@ exports.item_list = function (req, res) {
 
 // Display Details of Items
 exports.item_detail = function (req, res) {
-    res.send('Not Implemented: Item Deatis')
+    Item.findById(req.params.id)
+        .exec(function (err, item_detail) {
+            if (err) { return next(err); }
+            res.render('item_detail', { title: item_detail.item_name, item_detail: item_detail });
+        });
 }
 
 // Display Item Create form on GET
