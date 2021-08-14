@@ -19,7 +19,7 @@ exports.index = function (req, res) {
 
 // Display list of all categories
 exports.category_list = function (req, res, next) {
-    Category.find({}, '')
+    Category.find()
         .exec(function (err, list_categories) {
             if (err) { return next(err) }
             res.render('category_list', { title: 'All Categories', category_list: list_categories });
@@ -27,8 +27,25 @@ exports.category_list = function (req, res, next) {
 }
 
 // Display Details of categories
-exports.category_detail = function (req, res) {
-    res.send('Not Implemented: Category Deatis')
+exports.category_detail = function (req, res, next) {
+    async.parallel({
+        category: function (callback) {
+            Category.findById(req.params.id)
+                .exec(callback)
+        },
+        category_items: function (callback) {
+            Item.find({ 'item_category': req.params.id })
+                .exec(callback)
+        }
+    }, function (err, results) {
+        if (err) { return next(err); }
+        if (results.category === null) {
+            var err = new Error('Category Not Found');
+            err.status = 404;
+            return next(err)
+        }
+        res.render('category_detail', { title: results.category.category_name, category: results.category, category_items: results.category_items });
+    })
 }
 
 // Display Category Create form on GET
