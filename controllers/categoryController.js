@@ -1,13 +1,29 @@
 var Category = require('../models/category');
+var Item = require('../models/item');
+var async = require('async');
 
 // Display Home Page
 exports.index = function (req, res) {
-    res.send('Not Implemented: Site Home Page');
+    async.parallel({
+        category_count: function (callback) {
+            Category.countDocuments({}, callback);
+        },
+        item_count: function (callback) {
+            Item.countDocuments({}, callback)
+        }
+    },
+        function (err, results) {
+            res.render('index', { title: 'Furniture For You', error: err, data: results })
+        });
 };
 
 // Display list of all categories
-exports.category_list = function (req, res) {
-    res.send('Not Implemented: Category List')
+exports.category_list = function (req, res, next) {
+    Category.find({}, '')
+        .exec(function (err, list_categories) {
+            if (err) { return next(err) }
+            res.render('category_list', { title: 'All Categories', category_list: list_categories });
+        });
 }
 
 // Display Details of categories
