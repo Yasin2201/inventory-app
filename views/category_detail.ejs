@@ -15,9 +15,11 @@
 
     <% category_items.map((item)=> {%>
         <div>
-            <h3>
-                <%= item.item_name %>
-            </h3>
+            <div>
+                <a href=<%=item.url%>>
+                    <%= item.item_name %>
+                </a>
+            </div>
         </div>
         <%})%>
 </body>
