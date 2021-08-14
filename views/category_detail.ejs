@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h1>
+        <%= title %>
+    </h1>
+
+    <% category_items.map((item)=> {%>
+        <div>
+            <h3>
+                <%= item.item_name %>
+            </h3>
+        </div>
+        <%})%>
+</body>
+
+</html>
