@@ -27,6 +27,9 @@ router.get('/category/:id/update', category_controller.category_update_get)
 // POST request for updating Category
 router.post('/category/:id/update', category_controller.category_update_post)
 
+//GET request to list all items in Category
+router.get('/category/:id', category_controller.category_detail)
+
 // GET request to list all Categories
 router.get('/categories', category_controller.category_list)
 
