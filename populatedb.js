@@ -64,13 +64,13 @@ function createCategoryAndItem(cb) {
             categoryCreate('Tables', 'A Range of table perfect for you', callback)
         },
         function (callback) {
-            itemCreate('Recliner', 'A comfy recliner to relax in', categories[0].category_name, 29.99, 5, callback)
+            itemCreate('Recliner', 'A comfy recliner to relax in', categories[0], 29.99, 5, callback)
         },
         function (callback) {
-            itemCreate('Rocking', 'The perfect chair to read your favourite book', categories[0].category_name, 49.99, 2, callback)
+            itemCreate('Rocking', 'The perfect chair to read your favourite book', categories[0], 49.99, 2, callback)
         },
         function (callback) {
-            itemCreate('Dining Table', 'Enjoy your favourite meals on your favourite table', categories[1].category_name, 129.99, 1, callback)
+            itemCreate('Dining Table', 'Enjoy your favourite meals on your favourite table', categories[1], 129.99, 1, callback)
         }
     ], cb)
 }
