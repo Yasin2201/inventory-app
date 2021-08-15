@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h1>
+        <%= title %>
+    </h1>
+
+    <form method="POST" action="">
+
+        <label for="category_name">Category Name:</label>
+        <input id="category_name" name="category_name" type="text" placeholder="Category Name">
+
+        <label for="category_desc">Category Description:</label>
+        <input id="category_desc" name="category_description" type="text" placeholder="Category Description">
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <% if (typeof errors !='undefined' ) { %>
+        <ul>
+            <% errors.forEach(err=> { %>
+                <li>
+                    <%= err.msg %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } %>
+</body>
+
+</html>
