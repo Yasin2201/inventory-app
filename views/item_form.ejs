@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h1>
+        <%= title %>
+    </h1>
+
+    <h3>
+        <a href='/'>
+            Home
+        </a>
+    </h3>
+
+    <form method="POST" action="">
+
+        <label for="item_name">item Name:</label>
+        <input id="item_name" name="item_name" type="text" placeholder="Item Name">
+
+        <label for="item_category">Item Category:</label>
+        <select type="select" name="item_category" placeholder="Item Category">
+            <% categories.forEach(category=> {%>
+                <option value="<%= category._id %>">
+                    <%= category.category_name %>
+                </option>
+                <% }) %>
+
+        </select>
+
+        <label for="item_description">Item Description:</label>
+        <input id="item_description" name="item_description" type="text" placeholder="Item Description">
+
+        <label for="item_stock">Item Stock:</label>
+        <input id="item_stock" name="item_stock" type="text" placeholder="Item Stock">
+
+        <label for="item_price">Item Price:</label>
+        <input id="item_price" name="item_price" type="text" placeholder="Item Price">
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <% if (typeof errors !='undefined' ) { %>
+        <ul>
+            <% errors.forEach(err=> { %>
+                <li>
+                    <%= err.msg %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } %>
+</body>
+
+</html>
