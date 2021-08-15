@@ -12,6 +12,13 @@
     <h1>
         <%= title %>
     </h1>
+
+    <h3>
+        <a href='/category/create'>
+            Create New Category
+        </a>
+    </h3>
+
     <% category_list.map((item)=> { %>
         <div>
             <a href=<%=item.url%>>
