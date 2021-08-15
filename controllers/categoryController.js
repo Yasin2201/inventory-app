@@ -1,6 +1,7 @@
 var Category = require('../models/category');
 var Item = require('../models/item');
 var async = require('async');
+var { body, validationResult } = require('express-validator');
 
 // Display Home Page
 exports.index = function (req, res) {
@@ -40,13 +41,53 @@ exports.category_detail = function (req, res, next) {
 
 // Display Category Create form on GET
 exports.category_create_get = function (req, res) {
-    res.send('Not Implemented: Category Create GET')
+    res.render('category_form', { title: 'Create Category' })
 }
 
 // Handle Category Create on POST
-exports.category_create_post = function (req, res) {
-    res.send('Not Implemented: Category Create POST')
-}
+exports.category_create_post = [
+    // validate and sanitize category_name field
+    body('category_name').trim().isLength({ min: 1 }).escape().withMessage('Category name can not be blank.'),
+    body('category_description').trim().isLength({ min: 1 }).escape().withMessage('Category Description can not be blank.'),
+
+    //Process request after validation & sanitization
+    (req, res, next) => {
+
+        //Errors from request
+        const errors = validationResult(req)
+
+        //Create category with trimmed and escaped data
+        var category = new Category({
+            category_name: req.body.category_name,
+            category_description: req.body.category_description
+        });
+
+        // // if req errors is not empty then re-render form with santized value/error messages
+        if (!errors.isEmpty()) {
+            res.render('category_form', { title: 'Create Category', category: category, errors: errors.array() });
+            return;
+        }
+        else {
+            //First check if category name already exists
+            Category.findOne({ 'category_name': req.body.category_name })
+                .exec(function (err, found_category) {
+                    if (err) { return next(err) }
+
+                    // if category already exists redirect to category page
+                    if (found_category) {
+                        res.redirect(found_category.url)
+                    }
+                    //else save new category then redirect to new category page
+                    else {
+                        category.save(function (err) {
+                            if (err) { return next(err) }
+                            res.redirect('/categories');
+                        });
+                    }
+                });
+        }
+    }
+]
 
 // Display Category Delete form on GET
 exports.category_delete_get = function (req, res) {
