@@ -12,9 +12,19 @@
     <h1>
         <%= title %>
     </h1>
-    <p>
-        <%= item_detail.item_description %>
-    </p>
+    <div>
+        <h3>
+            Price: £<%= item_detail.item_price%>
+        </h3>
+
+        <h3>
+            Stock: <%= item_detail.item_stock%>
+        </h3>
+
+        <p>
+            Description: <%= item_detail.item_description %>
+        </p>
+    </div>
 </body>
 
 </html>
