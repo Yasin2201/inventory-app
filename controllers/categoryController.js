@@ -91,7 +91,7 @@ exports.category_create_post = [
 
 // Display Category Delete form on GET
 exports.category_delete_get = function (req, res, next) {
-
+    // GET category and items data
     async.parallel({
         category: function (callback) {
             Category.findById(req.params.id).exec(callback)
@@ -101,18 +101,21 @@ exports.category_delete_get = function (req, res, next) {
         },
     }, function (err, results) {
         if (err) { return next(err) }
-
+        // if category doesn't exist throw err
         if (results.category === null) {
             var error = new Error("Category Not Found")
             error.status = 404
             return next(err)
         }
+        // SUCCESS render delete page and display category and item info
         res.render('category_delete', { title: 'Delete Category', category: results.category, items: results.items })
     })
 }
 
 // Handle Category Delete on POST
 exports.category_delete_post = function (req, res, next) {
+
+    // Get category and items information
     async.parallel({
         category: function (callback) {
             Category.findById(req.params.id).exec(callback)
@@ -122,8 +125,12 @@ exports.category_delete_post = function (req, res, next) {
         },
     }, function (err, results) {
         if (err) { return next(err) }
+        //Successfull
         else {
+            // delete all items with a item_category value that matches id of category being deleted 
             Item.deleteMany({ 'item_category': results.category._id }, function (err) { })
+
+            // find category by id and delete
             Category.findByIdAndRemove(req.body.categoryid, function deleteCategory(err) {
                 if (err) { return next(err) }
                 res.redirect('/categories')
