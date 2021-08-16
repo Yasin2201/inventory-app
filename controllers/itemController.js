@@ -59,7 +59,7 @@ exports.item_create_post = [
             item.save(function (err) {
                 if (err) { return next(err) }
 
-                res.redirect(item.url)
+                res.redirect(`/category/${item.item_category}`)
             })
         }
     }
