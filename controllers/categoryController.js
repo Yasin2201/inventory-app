@@ -90,8 +90,25 @@ exports.category_create_post = [
 ]
 
 // Display Category Delete form on GET
-exports.category_delete_get = function (req, res) {
-    res.send('Not Implemented: Category Delete GET')
+exports.category_delete_get = function (req, res, next) {
+
+    async.parallel({
+        category: function (callback) {
+            Category.findById(req.params.id).exec(callback)
+        },
+        items: function (callback) {
+            Item.find({ 'item_category': req.params.id }).exec(callback)
+        },
+    }, function (err, results) {
+        if (err) { return next(err) }
+
+        if (results.category === null) {
+            var error = new Error("Category Not Found")
+            error.status = 404
+            return next(err)
+        }
+        res.render('category_delete', { title: 'Delete Category', category: results.category, items: results.items })
+    })
 }
 
 // Handle Category Delete on POST
