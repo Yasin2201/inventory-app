@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h1>
+        <%= title %>
+    </h1>
+
+    <h3>
+        <a href='/'>
+            Home
+        </a>
+    </h3>
+
+    <h2>
+        Are you sure you want to delete <%= item.item_name%>?
+    </h2>
+
+    <form method='POST' action=''>
+        <input type="hidden" name='itemid' required='true' value=<%=item._id%>>
+        <button type='submit'>Delete</button>
+    </form>
+
+</body>
+
+</html>
