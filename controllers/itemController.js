@@ -66,13 +66,36 @@ exports.item_create_post = [
 ]
 
 // Display Item Delete form on GET
-exports.item_delete_get = function (req, res) {
-    res.send('Not Implemented: Item Delete GET')
+exports.item_delete_get = function (req, res, next) {
+    Item.findById(req.params.id)
+        .exec(function (err, item) {
+            if (err) { return next(err) }
+
+            if (item === null) {
+                var error = new Error('Item Not Found')
+                error.status = 404
+                return next(error)
+            }
+            res.render('item_delete', { title: 'Delete Item', item: item })
+        })
 }
 
 // Handle Item Delete on POST
-exports.item_delete_post = function (req, res) {
-    res.send('Not Implemented: Item Delete POST')
+exports.item_delete_post = function (req, res, next) {
+    Item.findById(req.params.id)
+        .exec(function (err, item) {
+            if (err) { return next(err) }
+
+            if (item === null) {
+                res.render('item_delete', { title: 'Delete Item', item: item })
+            }
+            else {
+                Item.findByIdAndRemove(req.body.itemid, function deleteItem(err) {
+                    if (err) { return next(err) }
+                    res.redirect(`/category/${item.item_category}`)
+                })
+            }
+        })
 }
 
 // Display Item Update form on GET
