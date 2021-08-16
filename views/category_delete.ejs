@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h1>
+        <%= title %>
+    </h1>
+
+    <h3>
+        <a href='/'>
+            Home
+        </a>
+    </h3>
+
+    <h2>
+        Are you sure you want to delete Category: <%= category.category_name%> ?
+    </h2>
+
+    <% if (items.length> 0) {%>
+        <h2>Warning this will also delete all following items in category:</h2>
+
+        <ul>
+            <% items.map((item)=> {%>
+                <li>
+                    <%= item.item_name%>
+                </li>
+                <%})%>
+        </ul>
+        <%}%>
+
+</body>
+
+</html>
