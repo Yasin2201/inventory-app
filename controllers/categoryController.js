@@ -171,9 +171,9 @@ exports.category_update_post = [
             return;
         } else {
             // successful redirect to update category detail page
-            Category.findByIdAndUpdate(req.params.id, category, {}, function (err, thecategory) {
+            Category.findByIdAndUpdate(req.params.id, category, {}, function (err) {
                 if (err) { return next(err) }
-                res.redirect(thecategory.url)
+                res.redirect('/categories')
             })
         }
     }
