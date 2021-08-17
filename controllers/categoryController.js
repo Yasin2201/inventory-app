@@ -151,5 +151,26 @@ exports.category_update_get = function (req, res, next) {
 // Handle Category Update on POST
 exports.category_update_post = [
     // validate and sanitize category fields
+    body('category_name').trim().isLength({ min: 1 }).escape().withMessage('Category name can not be blank.'),
+    body('category_description').trim().isLength({ min: 1 }).escape().withMessage('Category Description can not be blank.'),
 
+    (req, res, next) => {
+        const errors = validationResult(req);
+
+        var category = new Category({
+            category_name: req.body.category_name,
+            category_description: req.body.category_description,
+            _id: req.params.id
+        });
+
+        if (!errors.isEmpty()) {
+            res.render('category_form', { title: 'Update Category', category: category, errors: errors.array() });
+            return;
+        } else {
+            Category.findByIdAndUpdate(req.params.id, category, {}, function (err, thecategory) {
+                if (err) { return next(err) }
+                res.redirect(thecategory.url)
+            })
+        }
+    }
 ]
