@@ -31,22 +31,35 @@
             <%= title %>
         </h2>
         <a href='/category/create'>
-            <img class='new-category-btn' src="http://localhost:3000/images/plus.png" alt="new category">
+            <img class='create-new-btn' src="http://localhost:3000/images/plus.png" alt="new category">
         </a>
     </div>
 
     <div id='category-list-container'>
         <% category_list.map((category)=> { %>
-            <a href=<%=category.url%>>
-                <div class='category-list-item'>
+            <div class='category-list-item'>
+
+                <a href=<%=category.url%> class='category-details'>
                     <h2>
                         <%= category.category_name %>
                     </h2>
                     <p>
                         <%= category.category_description %>
                     </p>
+                </a>
+
+                <div class='action-icons'>
+                    <a href="<%=`${category.url}/update` %>">
+                        <img class='update-btn' src="http://localhost:3000/images/edit.png" alt="edit category">
+                    </a>
+
+                    <a href="<%=`${category.url}/delete` %>">
+                        <img class='delete-btn' src="http://localhost:3000/images/delete.png" alt="delete category">
+                    </a>
                 </div>
-            </a>
+
+            </div>
+
             <% }) %>
     </div>
 

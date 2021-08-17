@@ -49,13 +49,13 @@ a.nav-links {
   margin-left: 10px;
 }
 
-.new-category-btn {
+.create-new-btn {
   margin: 20px;
 }
-.new-category-btn:hover {
+.create-new-btn:hover {
   transform: scale(1.1);
 }
-.new-category-btn:active {
+.create-new-btn:active {
   transform: scale(1.05);
 }
 
@@ -68,10 +68,11 @@ a.nav-links {
 .category-list-item {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
 
+  padding: 5px;
   width: 250px;
   height: 125px;
 
@@ -80,9 +81,27 @@ a.nav-links {
 
   color: rgb(56, 56, 56);
 }
-.category-list-item:hover {
-  transform: scale(1.1);
+
+.category-details{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  word-wrap: break-word;
 }
-.category-list-item:active {
+.category-details:hover{
+transform: scale(1.05);
+}
+
+.action-icons {
+  border-top: 1px solid rgba(0, 0, 0, 0.322);
+  margin-top: 10px;
+  padding-top: 10px;
+  width: inherit;
+}
+.update-btn:hover{
+  transform: scale(1.05);
+}
+.delete-btn:hover{
   transform: scale(1.05);
 }
