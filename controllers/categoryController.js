@@ -46,7 +46,7 @@ exports.category_create_get = function (req, res) {
 
 // Handle Category Create on POST
 exports.category_create_post = [
-    // validate and sanitize category_name field
+    // validate and sanitize category fields
     body('category_name').trim().isLength({ min: 1 }).escape().withMessage('Category name can not be blank.'),
     body('category_description').trim().isLength({ min: 1 }).escape().withMessage('Category Description can not be blank.'),
 
@@ -140,11 +140,16 @@ exports.category_delete_post = function (req, res, next) {
 }
 
 // Display Category Update form on GET
-exports.category_update_get = function (req, res) {
-    res.send('Not Implemented: Category Update Get')
+exports.category_update_get = function (req, res, next) {
+    Category.findById(req.params.id)
+        .exec(function (err, category) {
+            if (err) { return next(err) }
+            res.render('category_form', { title: 'Update Category', category: category });
+        });
 }
 
 // Handle Category Update on POST
-exports.category_update_post = function (req, res) {
-    res.send('Not Implemented: Category Update POST')
-}
+exports.category_update_post = [
+    // validate and sanitize category fields
+
+]
