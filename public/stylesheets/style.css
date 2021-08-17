@@ -1,3 +1,6 @@
+* {
+  margin: 0;
+}
 body {
   margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -37,4 +40,49 @@ a.nav-links {
 .inventory_image:hover {
   border-radius: 15px;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.13);
+}
+
+.title-container {
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.new-category-btn {
+  margin: 20px;
+}
+.new-category-btn:hover {
+  transform: scale(1.1);
+}
+.new-category-btn:active {
+  transform: scale(1.05);
+}
+
+#category-list-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: none;
+}
+
+.category-list-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  width: 250px;
+  height: 125px;
+
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+
+  color: rgb(56, 56, 56);
+}
+.category-list-item:hover {
+  transform: scale(1.1);
+}
+.category-list-item:active {
+  transform: scale(1.05);
 }

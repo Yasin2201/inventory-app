@@ -9,29 +9,47 @@
 </head>
 
 <body>
-    <h1>
-        <%= title %>
-    </h1>
+    <header>
+        <h1>
+            Furniture For You
+        </h1>
 
-    <h3>
-        <a href='/'>
-            Home
-        </a>
-    </h3>
+        <div id='nav-links-container'>
+            <a href='/' class='nav-links'>
+                Home
+            </a>
 
-    <h3>
-        <a href='/category/create'>
-            Create New Category
-        </a>
-    </h3>
-
-    <% category_list.map((item)=> { %>
-        <div>
-            <a href=<%=item.url%>>
-                <%= item.category_name %>
+            <a href='/categories' class='nav-links'>
+                Categories
             </a>
         </div>
-        <% }) %>
+
+    </header>
+
+    <div class='title-container'>
+        <h2 class='title'>
+            <%= title %>
+        </h2>
+        <a href='/category/create'>
+            <img class='new-category-btn' src="http://localhost:3000/images/plus.png" alt="new category">
+        </a>
+    </div>
+
+    <div id='category-list-container'>
+        <% category_list.map((category)=> { %>
+            <a href=<%=category.url%>>
+                <div class='category-list-item'>
+                    <h2>
+                        <%= category.category_name %>
+                    </h2>
+                    <p>
+                        <%= category.category_description %>
+                    </p>
+                </div>
+            </a>
+            <% }) %>
+    </div>
+
 </body>
 
 </html>
