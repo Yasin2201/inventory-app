@@ -23,7 +23,7 @@ exports.item_create_get = function (req, res, next) {
     Category.find({})
         .exec(function (err, categories) {
             if (err) { return next(err) }
-            res.render('item_form', { title: 'Create Item', categories: categories })
+            res.render('item_form', { title: 'Create Item', categories: categories, item: undefined })
         })
 }
 
