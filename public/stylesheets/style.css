@@ -105,3 +105,10 @@ transform: scale(1.05);
 .delete-btn:hover{
   transform: scale(1.05);
 }
+
+.item-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
