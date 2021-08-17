@@ -61,7 +61,7 @@ function createCategoryAndItem(cb) {
             categoryCreate('Chairs', 'Beautiful chairs for any environment', callback)
         },
         function (callback) {
-            categoryCreate('Tables', 'A Range of table perfect for you', callback)
+            categoryCreate('Tables', 'A Range of tables perfect for you', callback)
         },
         function (callback) {
             itemCreate('Recliner', 'A comfy recliner to relax in', categories[0], 29.99, 5, callback)
