@@ -9,26 +9,39 @@
 </head>
 
 <body>
-  <h1>
-    <%= title %>
-  </h1>
+  <header>
+    <h1>
+      <%= title %>
+    </h1>
 
-  <h2>
-    <a href=<%=url%>>
-      Categories
-    </a>
-  </h2>
+    <div id='nav-links-container'>
+      <a href='/' class='nav-links'>
+        Home
+      </a>
 
-  <div>
-    <h3>
-      Inventory Management Application.
-    </h3>
+      <a href=<%=url%> class='nav-links'>
+        Categories
+      </a>
+    </div>
+
+  </header>
+  <div id='home-main'>
+    <h1>
+      Inventory Management Application
+    </h1>
 
     <p>
-      Manage all your furniture needs, tracking a range of everything available. Add, Edit and Remove Categories and
-      Items at will.
+      Manage all your furniture tracking needs a range of everything available<br>Add, Edit and Remove Categories and
+      Items
     </p>
+
+    <a href=<%=url%>>
+      <img class='inventory_image' src="http://localhost:3000/images/inventory.png" alt="inventory image" width="300"
+        height="300">
+    </a>
+
   </div>
+
 </body>
 
 </html>
