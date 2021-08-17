@@ -22,7 +22,8 @@
     <form method="POST" action="">
 
         <label for="item_name">item Name:</label>
-        <input id="item_name" name="item_name" type="text" placeholder="Item Name">
+        <input id="item_name" name="item_name" type="text" placeholder="Item Name"
+            value="<%= item !== undefined ? item.item_name : '' %>">
 
         <label for="item_category">Item Category:</label>
         <select type="select" name="item_category" placeholder="Item Category">
@@ -35,13 +36,16 @@
         </select>
 
         <label for="item_description">Item Description:</label>
-        <input id="item_description" name="item_description" type="text" placeholder="Item Description">
+        <input id="item_description" name="item_description" type="text" placeholder="Item Description"
+            value="<%= item !== undefined ? item.item_description : '' %>">
 
         <label for="item_stock">Item Stock:</label>
-        <input id="item_stock" name="item_stock" type="text" placeholder="Item Stock">
+        <input id="item_stock" name="item_stock" type="text" placeholder="Item Stock"
+            value="<%= item !== undefined ? item.item_stock : '' %>">
 
         <label for="item_price">Item Price:</label>
-        <input id="item_price" name="item_price" type="text" placeholder="Item Price">
+        <input id="item_price" name="item_price" type="text" placeholder="Item Price"
+            value="<%= item !== undefined ? item.item_price : '' %>">
 
         <button type="submit">Submit</button>
     </form>
