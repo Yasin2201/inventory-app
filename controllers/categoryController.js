@@ -141,6 +141,7 @@ exports.category_delete_post = function (req, res, next) {
 
 // Display Category Update form on GET
 exports.category_update_get = function (req, res, next) {
+    // find category that will be update and populate update form with category info
     Category.findById(req.params.id)
         .exec(function (err, category) {
             if (err) { return next(err) }
@@ -157,6 +158,7 @@ exports.category_update_post = [
     (req, res, next) => {
         const errors = validationResult(req);
 
+        // set update category details as those specified in update category form
         var category = new Category({
             category_name: req.body.category_name,
             category_description: req.body.category_description,
@@ -164,9 +166,11 @@ exports.category_update_post = [
         });
 
         if (!errors.isEmpty()) {
+            // if error re-render category with list of error messages
             res.render('category_form', { title: 'Update Category', category: category, errors: errors.array() });
             return;
         } else {
+            // successful redirect to update category detail page
             Category.findByIdAndUpdate(req.params.id, category, {}, function (err, thecategory) {
                 if (err) { return next(err) }
                 res.redirect(thecategory.url)
