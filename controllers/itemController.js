@@ -100,10 +100,21 @@ exports.item_delete_post = function (req, res, next) {
 
 // Display Item Update form on GET
 exports.item_update_get = function (req, res) {
-    res.send('Not Implemented: Item Update Get')
+
+    async.parallel({
+        item: function (callback) {
+            Item.findById(req.params.id).exec(callback)
+        },
+        categories: function (callback) {
+            Category.find().exec(callback)
+        }
+    }, function (err, results) {
+        if (err) { return next(err) }
+        res.render('item_form', { title: 'Update Item', item: results.item, categories: results.categories });
+    })
 }
 
 // Handle Item Update on POST
-exports.item_update_post = function (req, res) {
-    res.send('Not Implemented: Item Update POST')
-}
+exports.item_update_post = [
+
+]
