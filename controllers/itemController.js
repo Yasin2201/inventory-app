@@ -116,5 +116,31 @@ exports.item_update_get = function (req, res) {
 
 // Handle Item Update on POST
 exports.item_update_post = [
+    body('item_name').trim().isLength({ min: 1 }).escape().withMessage('Item Name must not be blank'),
+    body('item_description').trim().isLength({ min: 1 }).escape().withMessage('Item description must not be blank'),
+    body('item_category').trim().escape(),
+    body('item_stock').trim().isLength({ min: 1 }).escape().withMessage('Item Stock must not be blank'),
+    body('item_price').trim().isLength({ min: 1 }).escape().withMessage('Item Price must not be blank'),
 
+    (req, res, next) => {
+        const errors = validationResult(req);
+
+        var item = new Item({
+            item_name: req.body.item_name,
+            item_description: req.body.item_description,
+            item_category: req.body.item_category,
+            item_stock: req.body.item_stock,
+            item_price: req.body.item_price,
+            _id: req.params.id
+        })
+        if (!errors.isEmpty()) {
+            res.render('item_form', { title: 'Update Item', item: item, errors: errors.array() });
+            return;
+        } else {
+            Item.findByIdAndUpdate(req.params.id, item, {}, function (err, theitem) {
+                if (err) { return next(err) }
+                res.redirect(theitem.url)
+            })
+        }
+    }
 ]
