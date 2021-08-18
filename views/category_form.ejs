@@ -28,24 +28,26 @@
 
     <div id='form-container'>
 
-        <div class='title-container'>
-            <h2 class='title'>
-                <%= `${title}: ${category.category_name}` %>
-            </h2>
-        </div>
+        <% if (category !==undefined) {%>
+            <div class='title-container'>
+                <h2 class='title'>
+                    <%= `${title}: ${category.category_name}` %>
+                </h2>
+            </div>
+            <%}%>
 
-        <form method="POST" action="">
+                <form method="POST" action="">
 
-            <label for="category_name">Category Name:</label>
-            <input id="category_name" name="category_name" type="text" placeholder="Category Name"
-                value="<%= category !== undefined ? category.category_name : ''%>">
+                    <label for="category_name">Category Name:</label>
+                    <input id="category_name" name="category_name" type="text" placeholder="Category Name"
+                        value="<%= category !== undefined ? category.category_name : ''%>">
 
-            <label for="category_desc">Category Description:</label>
-            <input id="category_desc" name="category_description" type="text" placeholder="Category Description"
-                value="<%= category !== undefined ? category.category_description : ''%>">
+                    <label for="category_desc">Category Description:</label>
+                    <input id="category_desc" name="category_description" type="text" placeholder="Category Description"
+                        value="<%= category !== undefined ? category.category_description : ''%>">
 
-            <button type="submit">Submit</button>
-        </form>
+                    <button type="submit">Submit</button>
+                </form>
     </div>
 
     <% if (typeof errors !='undefined' ) { %>
