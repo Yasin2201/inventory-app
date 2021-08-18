@@ -9,24 +9,35 @@
 </head>
 
 <body>
-    <h1>
-        <%= title %>
-    </h1>
+    <header>
+        <h1>
+            Furniture For You
+        </h1>
 
-    <h3>
-        <a href='/'>
-            Home
-        </a>
-    </h3>
+        <div id='nav-links-container'>
+            <a href='/' class='nav-links'>
+                Home
+            </a>
 
-    <h2>
-        Are you sure you want to delete <%= item.item_name%>?
-    </h2>
+            <a href='/categories' class='nav-links'>
+                Categories
+            </a>
+        </div>
+    </header>
 
-    <form method='POST' action=''>
-        <input type="hidden" name='itemid' required='true' value=<%=item._id%>>
-        <button type='submit'>Delete</button>
-    </form>
+    <div class='title-container'>
+        <h2 class='title'>
+            Are you sure you want to delete Item: <%= item.item_name%>
+        </h2>
+
+    </div>
+
+    <div class='delete-container'>
+        <form method='POST' action=''>
+            <input type="hidden" name='itemid' required='true' value=<%=item._id%>>
+            <button class="delete-btn" type='submit'>Delete</button>
+        </form>
+    </div>
 
 </body>
 

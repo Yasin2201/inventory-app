@@ -9,40 +9,47 @@
 </head>
 
 <body>
-    <h1>
-        <%= title %>
-    </h1>
+    <header>
+        <h1>
+            Furniture For You
+        </h1>
 
-    <h3>
-        <a href='/'>
-            Home
-        </a>
-    </h3>
+        <div id='nav-links-container'>
+            <a href='/' class='nav-links'>
+                Home
+            </a>
 
-    <h3>
-        <a href="<%=`${item_detail.url}/delete` %>">
-            Delete
-        </a>
-    </h3>
+            <a href='/categories' class='nav-links'>
+                Categories
+            </a>
+        </div>
 
-    <h3>
-        <a href="<%=`${item_detail.url}/update` %>">
-            Update
-        </a>
-    </h3>
+    </header>
 
-    <div>
-        <h3>
-            Price: £<%= item_detail.item_price%>
-        </h3>
-
-        <h3>
-            Stock: <%= item_detail.item_stock%>
-        </h3>
-
+    <div class='item-container'>
+        <h2 class='title'>
+            <%= title %>
+        </h2>
         <p>
-            Description: <%= item_detail.item_description %>
+            <%= item_detail.item_description %>
         </p>
+        <div>
+            <h3>
+                Price: £<%= item_detail.item_price%>
+            </h3>
+
+            <h3>
+                Stock: <%= item_detail.item_stock%>
+            </h3>
+
+        </div>
+
+        <a href="<%=`${item_detail.url}/update` %>">
+            <img class='create-new-btn' src="http://localhost:3000/images/edit.png" alt="new category">
+        </a>
+        <a href="<%=`${item_detail.url}/delete` %>">
+            <img class='create-new-btn' src="http://localhost:3000/images/delete.png" alt="new category">
+        </a>
     </div>
 </body>
 

@@ -9,36 +9,51 @@
 </head>
 
 <body>
-    <h1>
-        <%= title %>
-    </h1>
+    <header>
+        <h1>
+            Furniture For You
+        </h1>
 
-    <h3>
-        <a href='/'>
-            Home
-        </a>
-    </h3>
+        <div id='nav-links-container'>
+            <a href='/' class='nav-links'>
+                Home
+            </a>
 
-    <h2>
-        Are you sure you want to delete Category: <%= category.category_name%> ?
-    </h2>
+            <a href='/categories' class='nav-links'>
+                Categories
+            </a>
+        </div>
+    </header>
 
-    <% if (items.length> 0) {%>
-        <h2>Warning this will also delete all following items in category:</h2>
+    <div class='title-container'>
+        <h2 class='title'>
+            Are you sure you want to delete Category: <%= category.category_name%>
+        </h2>
 
-        <ul>
-            <% items.map((item)=> {%>
-                <li>
-                    <%= item.item_name%>
-                </li>
-                <%})%>
-        </ul>
-        <%}%>
+    </div>
 
-            <form method='POST' action=''>
-                <input type="hidden" name='categoryid' required='true' value=<%=category._id%>>
-                <button type='submit'>Delete</button>
-            </form>
+    <div class='delete-container'>
+        <% if (items.length> 0) {%>
+            <div class='delete-warning'>
+                <h1>Warning this will also delete all <br> following items in category: <%= category.category_name%>
+                </h1>
+
+                <% items.map((item)=> {%>
+                    <a href=<%=item.url%> alt="<%= item.item_name%>">
+                            <h2>
+                                <%= item.item_name%>
+                            </h2>
+                    </a>
+                    <%})%>
+            </div>
+            <%}%>
+
+                <form method='POST' action=''>
+                    <input type="hidden" name='categoryid' required='true' value=<%=category._id%>>
+                    <button class="delete-btn" type='submit'>Delete</button>
+                </form>
+    </div>
+
 
 </body>
 
