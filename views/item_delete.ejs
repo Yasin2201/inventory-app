@@ -32,12 +32,10 @@
 
     </div>
 
-    <div class='delete-container'>
-        <form method='POST' action=''>
-            <input type="hidden" name='itemid' required='true' value=<%=item._id%>>
-            <button class="delete-btn" type='submit'>Delete</button>
-        </form>
-    </div>
+    <form method='POST' action=''>
+        <input type="hidden" name='itemid' required='true' value=<%=item._id%>>
+        <button class="delete-btn" type='submit'>Delete</button>
+    </form>
 
 </body>
 

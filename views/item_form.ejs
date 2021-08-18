@@ -58,11 +58,11 @@
                         placeholder="Item Description"><%= item !== undefined ? item.item_description : '' %></textarea>
 
                     <label for="item_stock">Item Stock:</label>
-                    <input id="item_stock" name="item_stock" type="text" placeholder="Item Stock"
+                    <input id="item_stock" name="item_stock" type="number" placeholder="Item Stock"
                         value="<%= item !== undefined ? item.item_stock : '' %>">
 
                     <label for="item_price">Item Price:</label>
-                    <input id="item_price" name="item_price" type="text" placeholder="Item Price"
+                    <input id="item_price" name="item_price" type="number" step="0.01" placeholder="Item Price"
                         value="<%= item !== undefined ? item.item_price : '' %>">
 
                     <button type="submit">Submit</button>

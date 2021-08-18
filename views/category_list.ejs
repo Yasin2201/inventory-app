@@ -29,10 +29,12 @@
     <div class='title-container'>
         <h2 class='title'>
             <%= title %>
+                <br>
+                <a href='/category/create'>
+                    Create New
+                </a>
         </h2>
-        <a href='/category/create'>
-            <img class='create-new-btn' src="http://localhost:3000/images/plus.png" alt="new category">
-        </a>
+
     </div>
 
     <div id='category-list-container'>
@@ -50,12 +52,11 @@
 
                 <div class='action-icons'>
                     <a href="<%=`${category.url}/update` %>">
-                        <img class='update-btn' src="http://localhost:3000/images/edit.png" alt="edit category">
+                        Update
                     </a>
-
+                    <br>
                     <a href="<%=`${category.url}/delete` %>">
-                        <img class='delete-btn-category' src="http://localhost:3000/images/delete.png"
-                            alt="delete category">
+                        Delete
                     </a>
                 </div>
 
